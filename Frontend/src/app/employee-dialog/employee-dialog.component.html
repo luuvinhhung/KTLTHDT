@@ -1,0 +1,50 @@
+<div class="form">
+    <h1 mat-dialog-title>Add Employee</h1>
+    <mat-dialog-content>
+        <p class="groupTitle">Account Details</p>
+        <mat-form-field>
+            <input matInput [(ngModel)]="employeeAdding.username" placeholder="User name ">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="employeeAdding.password" placeholder="Password">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="repeatPassword" placeholder="Confirm Password">
+        </mat-form-field>
+        <p class="groupTitle">Personal Details</p>
+
+        <mat-form-field>
+            <input matInput [(ngModel)]="employeeAdding.Avatar" placeholder="Avatar link">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="employeeAdding.fullName" placeholder="Full name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Email">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="employeeAdding.phoneNumber" placeholder="Phone number">
+        </mat-form-field>
+        <!-- sortBranch -->
+        <div>
+            <button mat-button [matMenuTriggerFor]="menu">Branch</button>
+            <mat-menu #menu="matMenu">
+                <div *ngFor="let department of departments">
+                    <button (click)="chooseBranch(department)" mat-menu-item>{{ department.Name | uppercase }}</button>
+                </div>
+
+            </mat-menu>
+        </div>
+    </mat-dialog-content>
+    <div class="actionBtn">
+        <mat-dialog-actions>
+            <button mat-button (click)="addEmployee()" style="background-color: #007BFF; color: white">Add</button>
+            <button mat-button type="button" mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<header>
+  <div class="nav-caption">
+    <a routerLink="/home">HIGHLANDS</a>
+  </div>
+  <div class="menu">
+    <button *ngIf='!access' routerLink="/login" class="btn btn-info">LOGIN</button>
+
+    <button *ngIf='access' class="btn btn-info" matTooltip="Click to see action" mat-button [matMenuTriggerFor]="menu">
+      <i class="fas fa-user-alt"></i>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button class="menuBtn" (click)="openEditUserDialog()" mat-menu-item>Your Profile</button>
+      <button class="menuBtn" (click)='logout()' mat-menu-item>Logout</button>
+    </mat-menu>
+  </div>
+</header>

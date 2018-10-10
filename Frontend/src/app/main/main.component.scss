@@ -1,0 +1,49 @@
+$color-logo : #F44336;
+ng-sidebar {
+    font-size: 15px;
+    text-align: center;
+    button {
+        height: 50px;
+        width: 200px;
+        color: white;
+        background-color: $color-logo;
+        border: 0px;
+        cursor: pointer;
+    }
+    i {
+        float: right;
+        padding-right: 10px;
+    }
+    .noactP {
+        color: rgb(107, 105, 105);
+        height: 70px;
+        padding-top: 20px; 
+        transition: 0.5s;    
+        border-top: 1px solid #EEEEEE;
+        margin-bottom: 0px;
+        cursor: pointer;
+    }
+    p:hover {
+        color: black;
+    }
+}
+.content {
+    padding-left: 200px;
+    background-color: #EEEEEE;
+    height: calc(200vh - 65px);
+}
+.activeP {
+    background-color: #F44336;
+    color: white;
+    height: 70px;
+    padding-top: 20px; 
+    transition: 0.5s;    
+    border-top: 1px solid #EEEEEE;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 1440px) {
+    .content {
+        padding-left: 200px;
+    }
+}

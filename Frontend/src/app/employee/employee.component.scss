@@ -1,0 +1,215 @@
+$color-logo : #F44336;
+
+h1 {
+    text-align: center;
+}
+input {
+    outline: none;
+    border-radius: 5px;
+}
+.input-group {
+    float: left;
+    input {
+        outline: none;
+        width: 0;
+        height: 40px;
+        transition: 0.5s;
+        border: none;
+        text-align: center;
+    }
+    .searchBtn {
+        outline: none; 
+        height: 40px;
+        color: black;
+        width: 60px;
+        border-radius: 20px;
+        background-color: white;
+    } 
+    .searchBtn:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+        -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+        -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    }  
+}
+.sortByBranch {
+    width: 200px;
+    background-color: white;
+}
+mat-menu {
+    width: 200px;
+}
+.input-group:hover input {
+    border-radius: 5px;
+    border-bottom: #F44336 1px solid; 
+    width: 300px;
+    .searchBtn {
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+        -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+        -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    }
+}
+mat-select {
+    padding-top: 10px;
+    max-width: 100px;
+    margin-right: 10px;
+}
+.show {
+    margin-bottom: 0px;
+}
+.addBtn {
+    border: #F44336 1px solid; 
+    color: white;
+    width: 40px;
+    border-radius: 12px;
+    background-color: #F44336;
+    font-weight: bold;
+    transition: 0.3s;
+    span {
+        display: none;
+    }
+}
+.addBtn:hover{
+    color: white;
+    background-color: $color-logo;
+    width: 80px;
+    cursor: pointer;
+    span {
+        display: inline;
+    }
+}
+.table {
+    background-color: white;
+    width: 1180px;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+    box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -moz-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -webkit-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    padding-left: 10px;
+    .pageBtn {
+        outline: none;
+        width: 60px;
+        background-color: #eeeeee;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+    }
+    .pageBtn:hover {
+        background-color: white;
+        border: 1px solid black;
+    }
+}
+.container {
+    font-size: 15px;
+    height: 70px;
+    margin: 10px;
+    padding-top: 10px;
+    border-bottom: 1px #EEEEEE solid;
+    transition: 0.5s;
+    cursor: pointer;
+    .settingIcon {
+        color: #F44336;
+        i {
+            padding-left: 40px;
+        }
+    }
+    .modal-body {
+        margin-bottom: 10px;
+    }
+}
+.main {
+    background-color: white;
+}
+.container.main:hover {
+    font-size: 17px;
+    box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -moz-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -webkit-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+}
+.emp {
+    border: 1px #e6e3e3 solid;
+    margin: 15px;
+    text-align: center;
+    border-radius: 12px;
+    padding: 0px;
+    padding-bottom: 10px;
+    min-width: 320px;
+    min-height: 367px;
+    font-size: 15px;
+    transition: 0.5s;
+    .disableBtn {
+        width: 50px;
+        background-color: #DDDDDD;
+        color: rgb(73, 71, 71);
+        cursor: not-allowed;
+        border: 1px solid black;
+        margin-right: 5px;
+    }
+    .editBtn {
+        height: 40px;
+        width: 50px;
+        margin-right: 10px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .delBtn {
+        color: white;
+        height: 40px;
+        width: 50px;
+        transition: 0.5s;
+        background-color: $color-logo;
+        cursor: pointer;
+    }
+    .editBtn:hover {
+        background-color: white;
+        border: 1px solid black;
+    }
+    .delBtn:hover {
+        background-color: red;
+        border: 1px solid white;
+    }
+    
+    .removeBtn {
+        background-color: #F44336;
+        color: white;
+    }
+    .removeBtn:hover {
+        border: 1px solid white;
+        background-color: rgb(230, 61, 49);
+        color: white;
+    }
+    .confirmBtn:hover {
+        cursor: pointer;
+        border: 1px solid black;
+        background-color: white;
+    }
+    h3 {
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        background-color: #EDEDF5;
+    }
+    img {
+        height: 160px;
+        width: 120px;
+        background-color: #EDEDF5;
+    }
+    p {
+        padding-left: 10px; 
+        text-align: left;
+    }
+    button {
+        margin-right: 10px;
+    }
+}
+.emp:hover {
+    cursor: pointer;
+    // background: #EDEDF5;
+    h3 {
+        // background-color: white;
+        // color: white;
+    }
+    box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -moz-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -webkit-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+}

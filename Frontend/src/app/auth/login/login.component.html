@@ -1,0 +1,22 @@
+<div class="background">
+  <img src="../../assets/login_background.jpg" alt="">
+</div>
+<div class="transbox">
+  <h2>
+    <i class="fas fa-lock"></i> LOGIN</h2>
+  <section>
+    <mat-form-field>
+      <input matInput type="username" [(ngModel)]="username" placeholder="Username">
+      <mat-hint>Enter a username.</mat-hint>
+      <mat-error>Invalid or missing username.</mat-error>
+    </mat-form-field>
+    <br> 
+    <mat-form-field style="margin-top: 10px">
+      <input type="password" matInput [(ngModel)]="password" placeholder="Password">
+      <mat-hint>Enter your password.</mat-hint>
+      <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+    <br>
+    <button (click)='onSubmit()' mat-raised-button color="primary">Login</button>
+  </section>
+</div>

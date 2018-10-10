@@ -1,0 +1,148 @@
+<div class="container" style="border-bottom: 0px; height: 50px;margin-top: 0px;">
+    <div class="row">
+        <!-- input search -->
+        <div class="input-group col-md-8">
+            <div class="input-group-btn">
+                <button class="btn btn-default searchBtn" (click)="searchDepart(keyw)">
+                    <i class="fas fa-search "></i>
+                </button>
+            </div>
+            <input placeholder=" Search..." [(ngModel)]="keyw" (keyup.enter)="searchDepart(keyw)">
+        </div>
+        <!-- button add -->
+        <div>
+            <button *ngIf='isAd' class="btn btn-default addBtn" (click)="openAddDialog()">
+                <span>ADD </span>
+                <i class="fas fa-plus"></i>
+            </button>
+            <button *ngIf='!isAd' matTooltip="You don't have permission to perform this action" disabled class="btn btn-default" style="width: 90px; background-color: #e9e9e9; color: black; border: 1px solid black; cursor: not-allowed;">
+                <span>ADD </span>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <!-- column header -->
+    <div class="container" style="color: #F44336; font-size: 25px">
+        <div class="row">
+            <div class="col-md-1">CODE</div>
+            <div class="col-md-2">NAME</div>
+            <div class="col-md-3">ADDRESS</div>
+            <div class="col-md-2">PHONE</div>
+            <div class="col-md-2 settingIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </div>
+    <!-- column data -->
+    <div class="container main" *ngFor="let department of departments | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row">
+            <div class="col-md-1">{{ department.BranchCode }}</div>
+            <div class="col-md-2">{{ department.Name | uppercase }}</div>
+            <div class="col-md-3">{{ department.Address }}</div>
+            <div class="col-md-2">{{ department.PhoneNumber }}</div>
+            <!-- edit and delete button -->
+            <div class="col-md-2 action">
+                <button *ngIf='!isAd' matTooltip="You don't have permission to perform this action" class="disableBtn btn btn-default" style="width: 50px; cursor: not-allowed">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button *ngIf='isAd' class="editBtn btn btn-default" data-toggle="modal" data-target="#myEditModal" style="max-width: 90px;">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <div id="myEditModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Branch Informations</h4>
+                            </div>
+                            <div class="modal-body">
+                                <mat-form-field>
+                                    <!-- <span class="col-md-3">BranchCode:</span> -->
+                                    <input matInput type="text" [(ngModel)]="department.BranchCode" placeholder="BranchCode">
+                                    <!-- <input class="col-md-8" type="text" [(ngModel)]="department.BranchCode"> -->
+                                </mat-form-field>
+                                <br>
+                                <mat-form-field>
+                                    <input matInput type="text" [(ngModel)]="department.Name" placeholder="Enter name">
+                                </mat-form-field>
+                                <br>
+                                <mat-form-field>
+                                    <input matInput type="text" [(ngModel)]="department.Address" placeholder="Enter address">
+                                </mat-form-field>
+                                <br>
+                                <mat-form-field>
+                                    <input matInput type="text" [(ngModel)]="department.PhoneNumber" placeholder="Enter phone">
+                                </mat-form-field>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btnConfirm btn btn-default" data-dismiss="modal" (click)="editDepartment(department)">Confirm</button>
+                                <button type="button" class="closeBtn btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- delete button -->
+                <button *ngIf='!isAd' matTooltip="You don't have permission to perform this action" class="btn btn-danger disableBtn" style="width: 50px;">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <button *ngIf='isAd' class="delBtn btn btn-default" data-toggle="modal" data-target="#myDelModal" style="max-width: 90px;">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <!-- delete modal -->
+                <div id="myDelModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Branch</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Are you sure you want to delete this branch?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="removeBtn btn btn-default" (click)='delDepartment(department)' data-dismiss="modal">Remove</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <!-- <ul class="pagination">
+                <li class="page-item">
+                    <button *ngIf="page !== 1" class="page-link" (click)="changePage(-1)">Previous</button>
+                    <button *ngIf="page === 1" disabled class="page-link">Previous</button>
+                </li>
+
+                <li class="page-item">
+                    <button *ngIf="!disableNextPageBtn" class="page-link" (click)="changePage(1)">Next</button>
+                    <button *ngIf="disableNextPageBtn" disabled class="page-link">Next</button>
+                </li>
+            </ul> -->
+        </div>
+        <!-- page size -->
+        <!-- <mat-select class="col-md-1" [(value)]="pageSize" placeholder="Show:">
+            <mat-option value=3 (click)="changePageSize()">
+                3
+            </mat-option>
+            <mat-option value=5 (click)="changePageSize()">
+                5
+            </mat-option>
+        </mat-select> -->
+    </div>
+    <!-- <button (click)="changePage(page = page - 1)" [(ngModel)]="page" class="pageBtn btn btn-default">Back</button>
+    <button (click)="changePage(page = page + 1)" [(ngModel)]="page" class="pageBtn btn btn-default">Next</button> -->
+</div>

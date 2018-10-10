@@ -1,0 +1,116 @@
+$color-logo : #F44336;
+.custom-image-style {
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .product-desc-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  
+  .custom-products-cart-container {
+    padding-top: 20px;
+  }
+  
+  .custom-products-cart-container ul ul {
+    width: 75%;
+    padding:  15%;
+  }
+  
+  .product-cart-item {
+    display: flex;
+  }
+  
+  .product-cart-item-left {
+    display: flex;
+  }
+  
+  .card {
+    margin-bottom: .75rem;
+  }
+  
+  .card-block {
+    padding: 1.25rem;
+   
+    
+  }
+.product {
+  text-align: center;
+  p {
+    text-align: left;
+  }
+  img {
+    width: 250px;
+    height: 300px;
+    margin: auto;
+  }
+}
+.actionBtn {
+  max-width: 300px;
+  margin: auto;
+  .delBtn {
+    border: 1px solid #F44336;
+    background-color: #F44336;
+    color: white;
+  }
+  .delBtn:hover {
+    border: 1px solid white;
+    background-color: rgb(230, 61, 49);
+    color: white;
+  }
+  .editBtn {
+    border: 1px solid #dddddd;
+    background-color: #DDDDDD;
+    margin-right: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+  .editBtn:hover {
+    background-color: white;
+    border: 1px solid black;
+  }
+}
+.addBtn {
+  border: #F44336 1px solid; 
+  color: white;
+  width: 40px;
+  border-radius: 12px;
+  background-color: #F44336;
+  font-weight: bold;
+  transition: 0.3s;
+  span {
+      display: none;
+  }
+}
+.addBtn:hover{
+  color: white;
+  background-color: $color-logo;
+  width: 80px;
+  cursor: pointer;
+  span {
+      display: inline;
+  }
+}
+.myEditModal {
+  input {
+    border-radius: 5px;
+  }
+}
+.confirmBtn{
+  color: rgb(44, 44, 218);
+  background: white;
+}
+.confirmBtn:hover {
+  background: #DDDDDD;
+}
+.image-product {
+  width: 100%;
+  background-color: white
+}
+
+.product-bill {
+  border: 1px solid blue;
+  background-color: #dddddd;
+}
