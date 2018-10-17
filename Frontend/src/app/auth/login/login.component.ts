@@ -12,12 +12,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginForm: FormGroup;
   public error: any;
-  private username: string;
-  private password: string;
-  // min number of characters
-  public minChars: number;
+  private txtUsername: string;
+  private txtPassword: string;
+  // ký tự tối thiểu
+  public minUsernameChars: number;
+  public minPasswordChars: number;
   // regular expression
   public reGexUsername: RegExp;
   public reGexPassword: RegExp;
@@ -30,9 +30,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // reset login status
+    // reset login
     this.authenticationService.logout();
-    this.minChars = 5;
+    this.minUsernameChars = 5;
+    this.minPasswordChars = 8;
     this.reGexUsername = this.errorList.reGexUsername;
     this.reGexPassword = this.errorList.reGexPassword;
   }
@@ -40,12 +41,28 @@ export class LoginComponent implements OnInit {
   // Tên hàm: checkUsernameFormat()
   // Mô tả: kiểm tra định dạng dữ liệu nhập của username
   // Tham số: usernameIn: string: chuỗi cần kiểm tra
-  // Xử lý chi tiết 2.2.a.3: LOGIN_E002
+  // Xử lý chi tiết 2.2.a.3/ 2.2.a.4/ 2.2.a.5: LOGIN_E002, LOGIN_E003, LOGIN_E004
   checkUsernameFormat(usernameIn: string) {
-    if (usernameIn.length >= this.minChars && !this.reGexUsername.test(usernameIn)) {
-      return true;
+    if (usernameIn !== '') {
+      if (usernameIn.length >= this.minUsernameChars) {
+        if (!this.reGexUsername.test(usernameIn)) {
+          return true;
+        } else {
+          this.toastr.error(this.errorList.LOGIN_E004,
+            this.errorList.LOGIN_MESSAGE_ERROR, {
+              timeOut: 3000,
+            });
+          return false;
+        }
+      } else {
+        this.toastr.error(this.errorList.LOGIN_E003 + this.minUsernameChars,
+          this.errorList.LOGIN_MESSAGE_ERROR, {
+            timeOut: 3000,
+          });
+        return false;
+      }
     } else {
-      this.toastr.error(this.errorList.LOGIN_E002 + this.minChars,
+      this.toastr.error(this.errorList.LOGIN_E002,
         this.errorList.LOGIN_MESSAGE_ERROR, {
           timeOut: 3000,
         });
@@ -56,12 +73,28 @@ export class LoginComponent implements OnInit {
   // Tên hàm: checkPasswordFormat()
   // Mô tả: kiểm tra định dạng dữ liệu nhập của password
   // Tham số: passwordIn: string: chuỗi cần kiểm tra
-  // Xử lý chi tiết 2.2.a.4: LOGIN_E003
+  // Xử lý chi tiết 2.2.a.6/ 2.2.a.7/ 2.2.a.8: LOGIN_E005, LOGIN_E006, LOGIN_E007
   checkPasswordFormat(passwordIn: string) {
-    if (passwordIn.length >= this.minChars && this.reGexPassword.test(passwordIn)) {
-      return true;
+    if (passwordIn !== '') {
+      if (passwordIn.length >= this.minPasswordChars) {
+        if (this.reGexPassword.test(passwordIn)) {
+          return true;
+        } else {
+          this.toastr.error(this.errorList.LOGIN_E007,
+            this.errorList.LOGIN_MESSAGE_ERROR, {
+              timeOut: 3000,
+            });
+          return false;
+        }
+      } else {
+        this.toastr.error(this.errorList.LOGIN_E006 + this.minPasswordChars,
+          this.errorList.LOGIN_MESSAGE_ERROR, {
+            timeOut: 3000,
+          });
+        return false;
+      }
     } else {
-      this.toastr.error(this.errorList.LOGIN_E003,
+      this.toastr.error(this.errorList.LOGIN_E005,
         this.errorList.LOGIN_MESSAGE_ERROR, {
           timeOut: 3000,
         });
@@ -71,17 +104,19 @@ export class LoginComponent implements OnInit {
 
   // Tên hàm: onSubmit()
   // Mô tả: kiểm tra username va password
-  // Xử lý chi tiết 2.2.a.1, 2.2.a.2: LOGIN_E001
+  // Xử lý chi tiết 2.2.a.1/ 2.2.a.2: LOGIN_E001
   onSubmit() {
-    if (this.checkUsernameFormat(this.username)
-      && this.checkPasswordFormat(this.password)) {
-      this.authenticationService.login(this.username, this.password)
+    const username = this.txtUsername;
+    const password = this.txtPassword;
+    if (this.checkUsernameFormat(this.txtUsername)
+      && this.checkPasswordFormat(this.txtPassword)) {
+      this.authenticationService.login(username, password)
         .pipe(first())
         .subscribe(result => {
           if (result === true) {
             // login successful
             this.router.navigate(['/home']);
-            this.toastr.success('Hello ' + this.username,
+            this.toastr.success('Hello ' + username,
               this.errorList.LOGIN_MESSAGE_SUCCESS);
           }
         }, error => {
