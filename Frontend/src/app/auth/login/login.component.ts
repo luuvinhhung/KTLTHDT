@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
     this.reGexPassword = this.errorList.reGexPassword;
   }
 
+  // Tên hàm: checkUsernameFormat()
+  // Mô tả: kiểm tra định dạng dữ liệu nhập của username
+  // Tham số: usernameIn: string: chuỗi cần kiểm tra
+  // Xử lý chi tiết 2.2.a.3: LOGIN_E002
   checkUsernameFormat(usernameIn: string) {
     if (usernameIn.length >= this.minChars && !this.reGexUsername.test(usernameIn)) {
       return true;
@@ -49,6 +53,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Tên hàm: checkPasswordFormat()
+  // Mô tả: kiểm tra định dạng dữ liệu nhập của password
+  // Tham số: passwordIn: string: chuỗi cần kiểm tra
+  // Xử lý chi tiết 2.2.a.4: LOGIN_E003
   checkPasswordFormat(passwordIn: string) {
     if (passwordIn.length >= this.minChars && this.reGexPassword.test(passwordIn)) {
       return true;
@@ -61,6 +69,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Tên hàm: onSubmit()
+  // Mô tả: kiểm tra username va password
+  // Xử lý chi tiết 2.2.a.1, 2.2.a.2: LOGIN_E001
   onSubmit() {
     if (this.checkUsernameFormat(this.username)
       && this.checkPasswordFormat(this.password)) {
