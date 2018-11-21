@@ -41,29 +41,34 @@ export class LoginComponent implements OnInit {
   // Tên hàm: checkUsernameFormat()
   // Mô tả: kiểm tra định dạng dữ liệu nhập của username
   // Tham số: usernameIn: string: chuỗi cần kiểm tra
-  // Xử lý chi tiết 2.2.a.3/ 2.2.a.4/ 2.2.a.5: LOGIN_E002, LOGIN_E003, LOGIN_E004
+  // (2) Xử lý đăng nhập
+  // 2. Xử lý check
+  // a. Check hạng mục
   checkUsernameFormat(usernameIn: string) {
     if (usernameIn !== '') {
       if (usernameIn.length >= this.minUsernameChars) {
         if (!this.reGexUsername.test(usernameIn)) {
           return true;
         } else {
-          this.toastr.error(this.errorList.LOGIN_E004,
-            this.errorList.LOGIN_MESSAGE_ERROR, {
+          // check hạng muc 2.a.5
+          this.toastr.error(this.errorList.FORMAT_E004,
+            this.errorList.MESSAGE_ERROR, {
               timeOut: 3000,
             });
           return false;
         }
       } else {
-        this.toastr.error(this.errorList.LOGIN_E003 + this.minUsernameChars,
-          this.errorList.LOGIN_MESSAGE_ERROR, {
+        // check hạng muc 2.a.4
+        this.toastr.error(this.errorList.FORMAT_E003 + this.minUsernameChars,
+          this.errorList.MESSAGE_ERROR, {
             timeOut: 3000,
           });
         return false;
       }
     } else {
-      this.toastr.error(this.errorList.LOGIN_E002,
-        this.errorList.LOGIN_MESSAGE_ERROR, {
+      // check hạng muc 2.a.3
+      this.toastr.error(this.errorList.FORMAT_E002,
+        this.errorList.MESSAGE_ERROR, {
           timeOut: 3000,
         });
       return false;
@@ -73,29 +78,34 @@ export class LoginComponent implements OnInit {
   // Tên hàm: checkPasswordFormat()
   // Mô tả: kiểm tra định dạng dữ liệu nhập của password
   // Tham số: passwordIn: string: chuỗi cần kiểm tra
-  // Xử lý chi tiết 2.2.a.6/ 2.2.a.7/ 2.2.a.8: LOGIN_E005, LOGIN_E006, LOGIN_E007
+  // (2) Xử lý đăng nhập
+  // 2. Xử lý check
+  // a. Check hạng mục
   checkPasswordFormat(passwordIn: string) {
     if (passwordIn !== '') {
       if (passwordIn.length >= this.minPasswordChars) {
         if (this.reGexPassword.test(passwordIn)) {
           return true;
         } else {
-          this.toastr.error(this.errorList.LOGIN_E007,
-            this.errorList.LOGIN_MESSAGE_ERROR, {
+          // check hạng muc 2.a.8
+          this.toastr.error(this.errorList.FORMAT_E007,
+            this.errorList.MESSAGE_ERROR, {
               timeOut: 3000,
             });
           return false;
         }
       } else {
-        this.toastr.error(this.errorList.LOGIN_E006 + this.minPasswordChars,
-          this.errorList.LOGIN_MESSAGE_ERROR, {
+        // check hạng muc 2.a.7
+        this.toastr.error(this.errorList.FORMAT_E006 + this.minPasswordChars,
+          this.errorList.MESSAGE_ERROR, {
             timeOut: 3000,
           });
         return false;
       }
     } else {
-      this.toastr.error(this.errorList.LOGIN_E005,
-        this.errorList.LOGIN_MESSAGE_ERROR, {
+      // check hạng muc 2.a.6
+      this.toastr.error(this.errorList.FORMAT_E005,
+        this.errorList.MESSAGE_ERROR, {
           timeOut: 3000,
         });
       return false;
@@ -104,7 +114,9 @@ export class LoginComponent implements OnInit {
 
   // Tên hàm: onSubmit()
   // Mô tả: kiểm tra username va password
-  // Xử lý chi tiết 2.2.a.1/ 2.2.a.2: LOGIN_E001
+  // (2) Xử lý đăng nhập
+  // 2. Xử lý check
+  // a. Check hạng mục
   onSubmit() {
     const username = this.txtUsername;
     const password = this.txtPassword;
@@ -117,13 +129,14 @@ export class LoginComponent implements OnInit {
             // login successful
             this.router.navigate(['/home']);
             this.toastr.success('Hello ' + username,
-              this.errorList.LOGIN_MESSAGE_SUCCESS);
+              this.errorList.MESSAGE_SUCCESS);
           }
         }, error => {
           // username or password incorrect
           this.error = error;
-          this.toastr.error(this.errorList.LOGIN_E001,
-            this.errorList.LOGIN_MESSAGE_ERROR, {
+          // check hạng muc 2.a.1 / 2.a.2
+          this.toastr.error(this.errorList.FORMAT_E001,
+            this.errorList.MESSAGE_ERROR, {
               timeOut: 3000,
             });
         });
